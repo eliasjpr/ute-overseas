@@ -1,7 +1,7 @@
 class Importer
-  ActiveRecord::Model
-  ActiveRecord::Conversion
-  ActiveRecord::Validations
+  # ActiveRecord::Model
+  # ActiveRecord::Conversion
+  # ActiveRecord::Validations
 
   attr_accessor :file
 

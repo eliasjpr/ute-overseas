@@ -1,0 +1,71 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+ body{
+  font-family: 'Open Sans', sans-serif !important ;
+  font-size: 16px;
+  margin-top: 8%;
+
+  background-color: #37abd6 !important;
+  background-image:  url('bg.jpg')
+ }
+
+nav{
+  margin-top: 15px;
+}
+
+b{
+  font-weight:  700;
+}
+
+.sky-blue-bg{
+}
+
+.container{
+  background-color: white;
+}
+.no-left-pad{
+  padding-left: 0 ;
+}
+
+.up-case{
+  text-transform: uppercase;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+p{ color: #5A6778;}
+
+footer{
+  margin-top: 20px;
+}
+
+hr { padding:3px !important; margin:6px 0;}

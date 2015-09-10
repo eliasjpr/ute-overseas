@@ -1,0 +1,23 @@
+<%= form_tag update_individual_settings_path, method: :put, :class => "form-horizontal account_receivable" do %>
+  <div class="row">
+    <div class="col-md-4">
+      <b>ATS</b>
+      <%= render 'fields', settings: @ats %>
+    </div>
+    <div class="col-md-4">
+      <b>SoftCargo</b>
+      <%= render 'fields', settings: @softcargo %>
+    </div>
+    <div class="col-md-4">
+      <b>Logisis</b>
+      <%= render 'fields', settings: @logisis %>
+    </div>
+  </div>
+  <hr>
+  <div class="btn-group pull-right">
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            import_account_receivables_path, :class => 'btn btn-default' %>
+
+    <%= submit_tag "Save Mapping", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

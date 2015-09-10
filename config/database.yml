@@ -1,0 +1,25 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: utcoverseas_development
+  username: eperez
+  password:
+  host: localhost
+  port: 5432  kk
+
+
+test:
+  <<: *default
+  database: utcoverseas_test
+
+
+production:
+  <<: *default
+  database: utcoverseas_production
+  username: utcoverseas
+  password: <%= ENV['UTCOVERSEAS_DATABASE_PASSWORD'] %>

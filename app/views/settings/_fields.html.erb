@@ -1,0 +1,10 @@
+<% settings.each do |setting|  %>
+  <%= fields_for "settings[]", setting  do |f| %>
+    <div class="control-group">
+        <%= f.label setting.name.to_sym , class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :value, value: setting.value, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

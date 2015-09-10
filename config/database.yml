@@ -20,6 +20,5 @@ test:
 
 production:
   <<: *default
-  database: utcoverseas_production
-  username: utcoverseas
-  password: <%= ENV['UTCOVERSEAS_DATABASE_PASSWORD'] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>

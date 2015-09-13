@@ -1,4 +1,3 @@
-require 'CSV'
 require 'roo'
 class Parser
 

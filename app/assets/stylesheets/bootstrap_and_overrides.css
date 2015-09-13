@@ -10,7 +10,7 @@
 
  body{
   font-family: 'Open Sans', sans-serif !important ;
-  font-size: 16px;
+  font-size: 12px !important;
   margin-top: 8%;
 
   background-color: #37abd6 !important;
@@ -23,6 +23,10 @@ nav{
 
 b{
   font-weight:  700;
+}
+
+table, table td{
+  font-size: 12px !important;
 }
 
 .sky-blue-bg{

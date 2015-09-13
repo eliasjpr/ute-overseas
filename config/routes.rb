@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :account_receivables do
     collection do
-      get 'import/', to: 'account_receivables#import',  as: :import
+      post 'import/', to: 'account_receivables#import',  as: :import
+      get 'merge/', to: 'account_receivables#merge',  as: :merge
     end
   end
   resources :settings do

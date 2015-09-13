@@ -12,8 +12,18 @@ class AccountReceivablesController < ApplicationController
   def show
   end
 
-  # GET /account_receivables/import/
+  # GET /account_receivables/merge
+  def merge
+  end
+
+
+  # Post /account_receivables/import/
   def import
+    @errors = []
+    Parser.import(params[:parser][:ats_file], :ats)  if !params[:parser][:ats_file].blank?
+    Parser.import(params[:parser][:soft_cargo_file], :soft_cargo) if !params[:parser][:soft_cargo_file].blank?
+    Parser.import(params[:parser][:logisis_file], :logisis) if !params[:parser][:logisis_file].blank?
+    redirect_to :root
   end
 
   # GET /account_receivables/new
@@ -68,6 +78,7 @@ class AccountReceivablesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_account_receivable
       @account_receivable = AccountReceivable.find(params[:id])
@@ -77,4 +88,5 @@ class AccountReceivablesController < ApplicationController
     def account_receivable_params
       params.require(:account_receivable).permit(:location, :invoice_date, :invoice_number, :bill_amount, :amount_received, :due_date, :customer_po)
     end
+
 end

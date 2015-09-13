@@ -3,10 +3,10 @@ class CreateAccountReceivables < ActiveRecord::Migration
     create_table :account_receivables do |t|
       t.string  :location
       t.date    :invoice_date
-      t.integer :invoice_number
-      t.float   :amount_billed
-      t.float   :amount_received
-      t.float   :amount_outstanding
+      t.string :invoice_number
+      t.decimal   :amount_billed, precision: 64, scale: 10
+      t.decimal   :amount_received, precision: 64, scale: 10
+      t.decimal   :amount_outstanding, precision: 64, scale: 10
       t.date    :due_date
       t.string  :purchase_order
       t.timestamps null: false

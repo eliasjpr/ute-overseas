@@ -1,12 +1,12 @@
 
 # Ats Fields
-Setting.create(name: 'invoice_date',    value: 'INVOICE DATE',        system: :Ats)
-Setting.create(name: 'invoice_number',  value: 'INVOICE REFERRENCE',  system: :Ats)
-Setting.create(name: 'amount_billed',   value: 'INVOICE AMOUNT',      system: :Ats)
-Setting.create(name: 'amount_received', value: 'PAYMENT AMOUNT',      system: :Ats)
-Setting.create(name: 'amount_outstanding', value: '',                 system: :Ats)
+Setting.create(name: 'invoice_date',    value: 'Invoice Date',        system: :Ats)
+Setting.create(name: 'invoice_number',  value: 'Invoice Number',      system: :Ats)
+Setting.create(name: 'amount_billed',   value: 'Invoice Amount',      system: :Ats)
+Setting.create(name: 'amount_received', value: 'Payment',             system: :Ats)
+Setting.create(name: 'amount_outstanding', value: 'Balance',          system: :Ats)
 Setting.create(name: 'due_date',        value: '',                    system: :Ats)
-Setting.create(name: 'purchase_order',  value: '',                    system: :Ats)
+Setting.create(name: 'purchase_order',  value: 'Reference Number',    system: :Ats)
 Setting.create(name: 'row_start',       value: '4',                   system: :Ats)
 
 

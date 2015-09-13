@@ -1,0 +1,14 @@
+
+<% content_for :title, 'Import and Merge'%>
+<%- model_class = AccountReceivable -%>
+<div class="content">
+  <br>
+  <h4 class="text-info up-case">Import and Merge Account Receivables<hr></h4>
+  <%= simple_form_for :parser, url: import_account_receivables_url do |f| %>
+    <%= f.input :soft_cargo_file, label: 'Choose Softcargo File', as: :file %>
+    <%= f.input :ats_file, label: 'Choose ATS File', as: :file %>
+    <%= f.input :logisis_file, label: 'Choose Logisis File', as: :file %>
+    <hr>
+    <%= submit_tag 'Import & Merge', :class => 'btn btn-primary' %>
+  <% end %>
+</div>

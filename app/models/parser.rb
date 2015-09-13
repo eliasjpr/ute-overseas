@@ -1,4 +1,5 @@
-
+require 'CSV'
+require 'roo'
 class Parser
 
   def self.import(file, system)

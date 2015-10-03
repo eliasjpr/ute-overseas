@@ -1,11 +1,24 @@
 class AccountReceivable < ActiveRecord::Base
 
+  # Kariari  gem setting
+  paginates_per 25
+
+
   validates :invoice_date, :invoice_number, :amount_billed, :amount_received, presence: true
 
   validates_numericality_of :amount_billed
   validates_numericality_of :amount_received
   validates_numericality_of :amount_outstanding
 
+  scope :total_due, -> (from,to){ where("(due_date - current_date) >= ? AND (due_date - current_date) <= ?", from , to).sum(:amount_outstanding)}
+
+  def self.totals
+    [sum(:amount_billed), sum(:amount_received), sum(:amount_outstanding)]
+  end
+
+  def self.aging_report
+    [ total_due(1,15),total_due(16,30), total_due(31,60), total_due(61,90), total_due(91, 1000)]
+  end
 
   def invoice_date=(date)
     if !date.blank?
@@ -15,6 +28,7 @@ class AccountReceivable < ActiveRecord::Base
   rescue ArgumentError
 
   end
+
 
   def due_date=(date)
     if !date.blank? &&

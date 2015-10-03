@@ -1,5 +1,5 @@
 <%= form_for @account_receivable, :html => { :class => "form-horizontal account_receivable" } do |f| %>
-
+    <%= f.hidden :format, value: :xls %>
     <% if @account_receivable.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">

@@ -2,6 +2,9 @@
 <div>
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%= paginate @account_receivables, theme: 'twitter-bootstrap-3', pagination_class: "pagination-sm" %>
+
 <table class="table table-striped">
   <thead>
     <tr>

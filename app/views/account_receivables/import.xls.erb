@@ -1,0 +1,120 @@
+<table cellpaggin="5" width="100%">
+  <tr>
+    <td colspan="8" align="center">
+      <h2>UTC Overseas Inc.</h2>
+      <h5>Accounts Receivable billing statement as of date 28-Sep-2015</h5>
+      General Post Office Box, PO Box 30618
+      <br />
+      New York, NY 10087-0618
+      <br />
+      Tel: 713-422-2850
+      <br />
+      <br />
+      <hr>
+    </td>
+  </tr>
+  <tr>
+    <td align="right"><b>Location:</b></td>
+    <td colspan="3">All</td>
+    <td align="right"><b>Wire Details:</b></td>
+    <td colspan="3">JP Morgan Chase</td>
+  </tr>
+  <tr>
+    <td align="right" valign="top"><b>Organization:</b></td>
+    <td colspan="3">
+      <i>Abraham North America</i>
+      <div>254 Comly Road</div>
+      <div>New Jersey,07035,US</div>
+      <div>Suite A</div>
+    </td>
+    <td></td>
+    <td colspan="3">
+      <div>New York, NY, 10004</div>
+      <div><b>Swift Code:</b> CHASUS33</div>
+      <div><b>T:</b> 9736863700</div>
+      <div><b>Acct#</b> 708098538  <b>ABA Routing#</b> 021000021</div>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Location</b></td>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Inv Date</b></td>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Invoice No</b></td>
+    <td style="border-bottom: 2px solid #333" align="right"><b>Bill Amount(USD)</b></td>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Amount Received(USD)</b></td>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Outstanding(USD)</b></td>
+    <td style="border-bottom: 2px solid #333" align="center"><b>Invoice Due</b></td>
+    <td style="border-bottom: 2px solid #333" ><b>Customer PO</b></td>
+  </tr>
+<% @account_receivables.each do |ar| %>
+  <tr>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.location %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.to_s %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_number %></td>
+    <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_billed %></td>
+    <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_received %></td>
+    <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_outstanding %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.due_date.to_s %></td>
+    <td style="border-bottom: 1px solid #e3e3e3"><%= ar.purchase_order %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><b>Total</b></td>
+    <td><b><%= number_to_currency @totals[0] %></b></td>
+    <td><b><%= number_to_currency @totals[1] %></b></td>
+    <td><b><%= number_to_currency @totals[2] %></b></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><b>Current</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>1-15</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>16-30</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>31-60</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>61-90</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>> 90 days</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3"></td>
+    <td style="border-bottom: 1px solid #e3e3e3"></td>
+  </tr>
+  <tr>
+    <td><b><%= number_to_currency @totals[2] %></b></td>
+    <td><%= number_to_currency @aging_report[0] %></td>
+    <td><%= number_to_currency @aging_report[1] %></td>
+    <td><%= number_to_currency @aging_report[2] %></td>
+    <td><%= number_to_currency @aging_report[3] %></td>
+    <td><%= number_to_currency @aging_report[4] %></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>

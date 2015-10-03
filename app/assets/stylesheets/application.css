@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+body{
+  /* Embed this font from Google Fonts at
+  https://www.google.com/fonts/specimen/Bree+Serif */
+
+  background-color: #fff;
+  color: #444;
+  font-family: "Helvetica" !important;
+  font-feature-settings: "'liga' 1";
+  font-kerning: auto;
+  font-style: normal;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5em;
+  text-align: left;
+  text-decoration: none;
+  text-transform: none;
+  word-spacing: 0;
+}

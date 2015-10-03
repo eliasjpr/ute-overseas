@@ -4,7 +4,7 @@ class AccountReceivablesController < ApplicationController
   # GET /account_receivables
   # GET /account_receivables.json
   def index
-    @account_receivables = AccountReceivable.all
+    @account_receivables = AccountReceivable.all.page params[:page]
   end
 
   # GET /account_receivables/1
@@ -14,25 +14,31 @@ class AccountReceivablesController < ApplicationController
 
   # GET /account_receivables/merge
   def merge
+    AccountReceivable.delete_all
   end
 
 
   # Post /account_receivables/import/
   def import
-    @errors = []
     Parser.import(params[:parser][:ats_file], :ats)  if !params[:parser][:ats_file].blank?
     Parser.import(params[:parser][:soft_cargo_file], :soft_cargo) if !params[:parser][:soft_cargo_file].blank?
-    Parser.import(params[:parser][:logisis_file], :logisis) if !params[:parser][:logisis_file].blank?
-    redirect_to :root
+
+    @header              = Parser.import(params[:parser][:logisis_file], :logisis) if !params[:parser][:logisis_file].blank?
+    @account_receivables = AccountReceivable.all
+    @totals              = AccountReceivable.totals
+    @aging_report        = AccountReceivable.aging_report
+
+    request.format = "xls"
+    respond_to do |format|
+     format.xls { render :xls => 'account_receivables_merged.xls' }
+    end
+    AccountReceivable.delete_all
   end
+
 
   # GET /account_receivables/new
   def new
     @account_receivable = AccountReceivable.new
-  end
-
-  # GET /account_receivables/1/edit
-  def edit
   end
 
 

@@ -4,7 +4,6 @@ gem 'rails', '4.2.4'
 gem 'pg'
 gem 'puma'
 gem 'twitter-bootstrap-rails'
-gem 'roo', '~> 2.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -12,7 +11,13 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+# custom gems
 gem 'simple_form'
+gem 'roo', '~> 2.1.0'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+gem 'excelinator', '~> 1.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

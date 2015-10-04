@@ -58,6 +58,7 @@ class AccountReceivablesController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /account_receivables/1
   # PATCH/PUT /account_receivables/1.json
   def update
@@ -71,6 +72,7 @@ class AccountReceivablesController < ApplicationController
       end
     end
   end
+
 
   # DELETE /account_receivables/1
   # DELETE /account_receivables/1.json

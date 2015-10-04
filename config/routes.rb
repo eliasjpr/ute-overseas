@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   end
   get '/settings',  to: 'settings#edit',  as: :import_settings
 
- root 'account_receivables#index'
+ root 'account_receivables#import'
 end

@@ -22,11 +22,9 @@
   <tr>
     <td align="right" valign="top"><b>Organization:</b></td>
     <td colspan="3">
-      <i>Abraham North America</i>
-      <div>254 Comly Road</div>
-      <div>New Jersey,07035,US</div>
-      <div>Suite A</div>
-    </td>
+      <% @account.each do |a| %>
+      <div><%= a %></div>
+      <% end %></td>
     <td></td>
     <td colspan="3">
       <div>New York, NY, 10004</div>

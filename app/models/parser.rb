@@ -26,7 +26,7 @@ class Parser
   def self.header(system, spreadsheet)
     header = []
     (6..12).each do |i|
-        header << spreadsheet.row(i)[1]
+        header << spreadsheet.row(i)[1] unless spreadsheet.row(i)[1].downcase.eql?("all")
     end
     header
   end
@@ -34,7 +34,7 @@ class Parser
   def self.build_record(row_hash, system)
     new_hash = {}
     Setting.send(system).each do |r|
-      new_hash[r.first.to_sym] = row_hash[r.last] if !['row_start','id','created_at', 'updated_at'].include?(r.first)
+      new_hash[r.first.to_sym] = row_hash[r.last] unless ['row_start','id','created_at', 'updated_at'].include?(r.first)
     end
     new_hash
   end

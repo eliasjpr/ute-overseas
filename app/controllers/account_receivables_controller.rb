@@ -23,7 +23,7 @@ class AccountReceivablesController < ApplicationController
     Parser.import(params[:parser][:ats_file], :ats)  if !params[:parser][:ats_file].blank?
     Parser.import(params[:parser][:soft_cargo_file], :soft_cargo) if !params[:parser][:soft_cargo_file].blank?
 
-    @header              = Parser.import(params[:parser][:logisis_file], :logisis) if !params[:parser][:logisis_file].blank?
+    @account             = Parser.import(params[:parser][:logisis_file], :logisis) if !params[:parser][:logisis_file].blank?
     @account_receivables = AccountReceivable.all
     @totals              = AccountReceivable.totals
     @aging_report        = AccountReceivable.aging_report
@@ -32,7 +32,6 @@ class AccountReceivablesController < ApplicationController
     respond_to do |format|
      format.xls { render :xls => 'account_receivables_merged.xls' }
     end
-    AccountReceivable.delete_all
   end
 
 

@@ -10,7 +10,7 @@ class AccountReceivable < ActiveRecord::Base
   validates_numericality_of :amount_received
   validates_numericality_of :amount_outstanding
 
-  scope :total_due, -> (from,to){ where("(due_date - current_date) >= ? AND (due_date - current_date) <= ?", from , to).sum(:amount_outstanding)}
+  scope :total_due, -> (from,to){ where("((invoice_date + interval '30' day) - current_date) >= ? AND ( (invoice_date + interval '30' day) - current_date) <= ?", from , to).sum(:amount_outstanding)}
 
   def self.totals
     [sum(:amount_billed), sum(:amount_received), sum(:amount_outstanding)]
@@ -31,7 +31,7 @@ class AccountReceivable < ActiveRecord::Base
 
 
   def due_date=(date)
-    if !date.blank? &&
+    unless date.blank?
       format_str = "%m/%d/" + (date =~ /\d{4}/ ? "%Y" : "%y")
       self[:due_date] = Date.parse(date.to_s) rescue Date.strptime(date.to_s, format_str)
     end

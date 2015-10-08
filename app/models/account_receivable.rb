@@ -22,7 +22,7 @@ class AccountReceivable < ActiveRecord::Base
 
   def invoice_date=(date)
     if !date.blank?
-      format_str = "%m/%d/" + (date =~ /\d{4}/ ? "%Y" : "%y")
+      format_str = "%M/%D/" + (date =~ /\d{4}/ ? "%Y" : "%y")
       self[:invoice_date] = Date.parse(date.to_s) rescue Date.strptime(date.to_s, format_str)
     end
   rescue ArgumentError
@@ -32,7 +32,6 @@ class AccountReceivable < ActiveRecord::Base
 
   def due_date=(date)
     unless date.blank?
-      format_str = "%m/%d/" + (date =~ /\d{4}/ ? "%Y" : "%y")
       self[:due_date] = Date.parse(date.to_s) rescue Date.strptime(date.to_s, format_str)
     end
   rescue ArgumentError

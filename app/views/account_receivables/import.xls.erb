@@ -54,7 +54,7 @@
 <% @account_receivables.each do |ar| %>
   <tr>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.location %></td>
-    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.strftime("%m/%d/%y") %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.strftime("%mm/%dd/%yyyy") %></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_number %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_billed %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_received %></td>
@@ -91,7 +91,7 @@
   </tr>
   <tr>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><b>Current</b></td>
-    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>1-15</b></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>01-15</b></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>16-30</b></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>31-60</b></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="right"><b>61-90</b></td>

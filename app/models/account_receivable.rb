@@ -30,12 +30,7 @@ class AccountReceivable < ActiveRecord::Base
   end
 
 
-  def due_date=(date)
-    unless date.blank?
-      self[:due_date] = Date.parse(date.to_s) rescue Date.strptime(date.to_s, format_str)
-    end
-  rescue ArgumentError
-  end
+
 
   def amount_outstanding=(num)
     num.gsub!(',','') if num.is_a?(String)

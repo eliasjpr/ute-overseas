@@ -2,7 +2,7 @@
   <tr>
     <td colspan="8" align="center">
       <h2>UTC Overseas Inc.</h2>
-      <h5>Accounts Receivable billing statement as of date 28-Sep-2015</h5>
+      <h5>Accounts Receivable billing statement</h5>
       General Post Office Box, PO Box 30618
       <br />
       New York, NY 10087-0618
@@ -50,18 +50,16 @@
     <td style="border-bottom: 2px solid #333" align="right"><b>Bill Amount(USD)</b></td>
     <td style="border-bottom: 2px solid #333" align="center"><b>Amount Received(USD)</b></td>
     <td style="border-bottom: 2px solid #333" align="center"><b>Outstanding(USD)</b></td>
-    <td style="border-bottom: 2px solid #333" align="center"><b>Invoice Due</b></td>
     <td style="border-bottom: 2px solid #333" ><b>Customer PO</b></td>
   </tr>
 <% @account_receivables.each do |ar| %>
   <tr>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.location %></td>
-    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.to_s %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.strftime("%m/%d/%y") %></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_number %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_billed %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_received %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_outstanding %></td>
-    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.due_date.to_s %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= ar.purchase_order %></td>
   </tr>
 <% end %>

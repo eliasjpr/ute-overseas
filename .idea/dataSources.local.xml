@@ -7,7 +7,8 @@
       <default-schemas>utcoverseas_development.pg_catalog utcoverseas_development.public</default-schemas>
     </data-source>
     <data-source name="Rails UTCOverseas: test" uuid="a2db7fd3-7f42-41fe-a13a-cc1e756b3986">
-      <first-sync>true</first-sync>
+      <schema-pattern>utcoverseas_test.*</schema-pattern>
+      <default-schemas>utcoverseas_test.*</default-schemas>
     </data-source>
   </component>
 </project>

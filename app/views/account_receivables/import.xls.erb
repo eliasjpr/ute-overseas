@@ -54,7 +54,7 @@
 <% @account_receivables.each do |ar| %>
   <tr>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.location %></td>
-    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.strftime("%mm/%dd/%yyyy") %></td>
+    <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_date.strftime("%D") %></td>
     <td style="border-bottom: 1px solid #e3e3e3" align="center"><%= ar.invoice_number %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_billed %></td>
     <td style="border-bottom: 1px solid #e3e3e3"><%= number_to_currency ar.amount_received %></td>

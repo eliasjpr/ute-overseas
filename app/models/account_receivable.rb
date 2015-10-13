@@ -20,18 +20,6 @@ class AccountReceivable < ActiveRecord::Base
     [ total_due(1,15),total_due(16,30), total_due(31,60), total_due(61,90), total_due(91, 1000)]
   end
 
-  def invoice_date=(date)
-    if !date.blank?
-      format_str = "%M/%D/" + (date =~ /\d{4}/ ? "%Y" : "%y")
-      self[:invoice_date] = Date.parse(date.to_s) rescue Date.strptime(date.to_s, format_str)
-    end
-  rescue ArgumentError
-
-  end
-
-
-
-
   def amount_outstanding=(num)
     num.gsub!(',','') if num.is_a?(String)
     self[:amount_outstanding] = num.to_f

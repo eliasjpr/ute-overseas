@@ -8,12 +8,12 @@ class Parser
     header_row  = Setting.get(system, 'row_start').to_i
     header      = spreadsheet.row(header_row)
     data_row    = header_row + 1
-
     (data_row..spreadsheet.last_row).each do |i|
       unless ["Total","Current","16 To 30",' '].include?(spreadsheet.row(i).first)
         row = Hash[[header, spreadsheet.row(i)].transpose]
         record = build_record(row, system).except(:row_start, :date_format)
-        errors << AccountReceivable.create(record).errors
+        account = AccountReceivable.create(record)
+        errors << account.errors
       end
     end
 
@@ -24,7 +24,7 @@ class Parser
   def self.header(system, spreadsheet)
     header = []
     (6..12).each do |i|
-        header << spreadsheet.row(i)[1] unless spreadsheet.row(i)[1].downcase.eql?("all")
+      header << spreadsheet.row(i)[1] unless spreadsheet.row(i)[1].downcase.eql?("all")
     end
     header
   end
@@ -35,11 +35,16 @@ class Parser
 
     Setting.send(system).each do |r|
       if r.first == 'invoice_date'
-        new_hash[r.first.to_sym] = Date.strptime( row_hash[r.last], date_format) unless row_hash[r.last].blank? rescue nil
+        new_hash[r.first.to_sym] = case system
+          when :ats then row_hash[r.last].to_date unless row_hash[r.last].blank? && row_hash[r.last].is_a?(Integer) rescue nil
+          when :soft_cargo then Date.strptime(row_hash[r.last], date_format) unless row_hash[r.last].blank? && row_hash[r.last].is_a?(Integer) rescue nil
+          when :logisis then Date.strptime(row_hash[r.last], date_format) unless row_hash[r.last].blank? && row_hash[r.last].is_a?(Integer) rescue nil
+        end
       else
-        p new_hash[r.first.to_sym] = row_hash[r.last]
+        new_hash[r.first.to_sym] = row_hash[r.last]
       end
     end
+
     new_hash
   end
 

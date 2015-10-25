@@ -10,11 +10,9 @@ class Parser
     data_row    = header_row + 1
 
     (data_row..spreadsheet.last_row).each do |i|
-      if  !spreadsheet.row(i).include?("Total") &&
-          !spreadsheet.row(i).include?("Current") &&
-          !spreadsheet.row(i).include?("16 To 30")
+      unless ["Total","Current","16 To 30",' '].include?(spreadsheet.row(i).first)
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        record = build_record(row, system).except(:row_start)
+        record = build_record(row, system).except(:row_start, :date_format)
         errors << AccountReceivable.create(record).errors
       end
     end
@@ -33,8 +31,14 @@ class Parser
 
   def self.build_record(row_hash, system)
     new_hash = {}
+    date_format =  Setting.get(system, 'date_format').to_s
+
     Setting.send(system).each do |r|
-      new_hash[r.first.to_sym] = row_hash[r.last] unless ['row_start','id','created_at', 'updated_at'].include?(r.first)
+      if r.first == 'invoice_date'
+        new_hash[r.first.to_sym] = Date.strptime( row_hash[r.last], date_format) unless row_hash[r.last].blank? rescue nil
+      else
+        p new_hash[r.first.to_sym] = row_hash[r.last]
+      end
     end
     new_hash
   end

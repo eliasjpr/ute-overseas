@@ -8,6 +8,7 @@ Setting.create(name: 'amount_outstanding', value: 'Balance',          system: :A
 Setting.create(name: 'due_date',        value: '',                    system: :Ats, sort_order: 6)
 Setting.create(name: 'purchase_order',  value: 'Reference Number',    system: :Ats, sort_order: 7)
 Setting.create(name: 'row_start',       value: '4',                   system: :Ats, sort_order: 8)
+Setting.create(name: 'date_format',     value: '%m/%d/%y',            system: :Ats, sort_order: 9)
 
 
 # SoftCargo Fields
@@ -19,6 +20,7 @@ Setting.create(name: 'amount_outstanding', value: 'Open',      system: :SoftCarg
 Setting.create(name: 'due_date',           value: 'Due',       system: :SoftCargo, sort_order: 6)
 Setting.create(name: 'purchase_order',     value: 'Details',   system: :SoftCargo, sort_order: 7)
 Setting.create(name: 'row_start',          value: '2',         system: :SoftCargo, sort_order: 8)
+Setting.create(name: 'date_format',        value: '%m/%d/%Y',  system: :SoftCargo, sort_order: 9)
 
 
 # Logisis Fields Main File
@@ -29,4 +31,5 @@ Setting.create(name: 'amount_received',    value: 'Amount Received',system: :Log
 Setting.create(name: 'amount_outstanding', value: 'Outstanding',    system: :Logisis, sort_order: 5)
 Setting.create(name: 'due_date',           value: 'Due Date',       system: :Logisis, sort_order: 6)
 Setting.create(name: 'purchase_order',     value: 'Customer PO',    system: :Logisis, sort_order: 7)
-Setting.create(name: 'row_start',          value: '4',              system: :Logisis, sort_order: 8)
+Setting.create(name: 'row_start',          value: '13',              system: :Logisis, sort_order: 8)
+Setting.create(name: 'date_format',        value: '%d-%b-%Y',       system: :Logisis, sort_order: 9)

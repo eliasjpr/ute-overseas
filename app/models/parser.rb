@@ -2,7 +2,7 @@ require 'roo'
 class Parser
 
   def self.import(file, system)
-    header_content, errors, reports =[],[],[]
+    header_content, errors, records =[],[],[]
     spreadsheet = open_spreadsheet(file)
     header_row  = Setting.get(system, 'row_start').to_i
     header      = spreadsheet.row(header_row)

@@ -10,15 +10,17 @@ class Parser
     data_row    = header_row + 1
     columns_mapping=Setting.send(system)
     setting_date_format = Setting.get(system, 'date_format').to_s
+    records=[]
+
     (data_row..spreadsheet.last_row).each do |i|
       unless ["Total","Current","16 To 30",' '].include?(spreadsheet.row(i).first)
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        record = build_record(row, columns_mapping, setting_date_format, system).except(:row_start, :date_format)
-        account = AccountReceivable.create(record)
-        errors << account.errors
+        records = build_record(row, columns_mapping, setting_date_format, system).except(:row_start, :date_format)
       end
     end
 
+    accounts = AccountReceivable.create(records)
+    errors << account.errors
     self.header(system, spreadsheet ) if system == :logisis
 
   end

@@ -21532,10 +21532,10 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYWNjb3VudF9yZWNlaXZhYmxlc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="location" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="invoice_date" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
-      <column name="invoice_number" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="amount_billed" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
-      <column name="amount_received" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
-      <column name="amount_outstanding" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
+      <column name="invoice_number" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <column name="amount_billed" sqlType="numeric" precision="64" scale="10" nullable="true" jdbcType="2"/>
+      <column name="amount_received" sqlType="numeric" precision="64" scale="10" nullable="true" jdbcType="2"/>
+      <column name="amount_outstanding" sqlType="numeric" precision="64" scale="10" nullable="true" jdbcType="2"/>
       <column name="due_date" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
       <column name="purchase_order" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
@@ -21554,16 +21554,21 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
-    <table name="importer_settings" schema="public" catalog="utcoverseas_test" type="TABLE">
-      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnaW1wb3J0ZXJfc2V0dGluZ3NfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+    <table name="schema_migrations" schema="public" catalog="utcoverseas_test" type="TABLE">
+      <column name="version" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
+    </table>
+    <table name="settings" schema="public" catalog="utcoverseas_test" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnc2V0dGluZ3NfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="value" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="system" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
-      <primary-key name="importer_settings_pkey" columns="id"/>
+      <column name="sort_order" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="settings_pkey" columns="id"/>
     </table>
-    <table name="importer_settings_id_seq" schema="public" catalog="utcoverseas_test" type="SEQUENCE">
+    <table name="settings_id_seq" schema="public" catalog="utcoverseas_test" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -21574,10 +21579,6 @@
       <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-    </table>
-    <table name="schema_migrations" schema="public" catalog="utcoverseas_test" type="TABLE">
-      <column name="version" sqlType="varchar" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
-      <index name="unique_schema_migrations" unique="true" columns="version"/>
     </table>
     <procedure name="_pg_char_max_length" schema="information_schema" catalog="utcoverseas_test" type="2">
       <prototype>

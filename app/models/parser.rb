@@ -8,10 +8,12 @@ class Parser
     header_row  = Setting.get(system, 'row_start').to_i
     header      = spreadsheet.row(header_row)
     data_row    = header_row + 1
+    columns_mapping=Setting.send(system)
+    setting_date_format = Setting.get(system, 'date_format').to_s
     (data_row..spreadsheet.last_row).each do |i|
       unless ["Total","Current","16 To 30",' '].include?(spreadsheet.row(i).first)
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        record = build_record(row, system).except(:row_start, :date_format)
+        record = build_record(row, columns_mapping, setting_date_format, system).except(:row_start, :date_format)
         account = AccountReceivable.create(record)
         errors << account.errors
       end
@@ -29,11 +31,11 @@ class Parser
     header
   end
 
-  def self.build_record(row_hash, system)
+  def self.build_record(row_hash, columns_mapping, setting_date_format, system)
     new_hash = {}
-    date_format =  Setting.get(system, 'date_format').to_s
+    date_format = setting_date_format
 
-    Setting.send(system).each do |r|
+    columns_mapping.each do |r|
       if r.first == 'invoice_date'
         new_hash[r.first.to_sym] = case system
           when :ats then row_hash[r.last].to_date unless row_hash[r.last].blank? && row_hash[r.last].is_a?(Integer) rescue nil

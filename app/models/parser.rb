@@ -17,8 +17,7 @@ class Parser
       end
     end
 
-    accounts = AccountReceivable.create(records)
-    errors << account.errors
+    errors << AccountReceivable.create(records)
     self.header(system, spreadsheet ) if system == :logisis
   end
 

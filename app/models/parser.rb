@@ -2,15 +2,13 @@ require 'roo'
 class Parser
 
   def self.import(file, system)
-    header_content=[]
-    errors=[]
+    header_content, errors, reports =[],[],[]
     spreadsheet = open_spreadsheet(file)
     header_row  = Setting.get(system, 'row_start').to_i
     header      = spreadsheet.row(header_row)
     data_row    = header_row + 1
-    columns_mapping=Setting.send(system)
+    columns_mapping = Setting.send(system)
     setting_date_format = Setting.get(system, 'date_format').to_s
-    records=[]
 
     (data_row..spreadsheet.last_row).each do |i|
       unless ["Total","Current","16 To 30",' '].include?(spreadsheet.row(i).first)
@@ -22,7 +20,6 @@ class Parser
     accounts = AccountReceivable.create(records)
     errors << account.errors
     self.header(system, spreadsheet ) if system == :logisis
-
   end
 
   def self.header(system, spreadsheet)

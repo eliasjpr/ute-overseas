@@ -24,7 +24,6 @@ class Parser
   def self.header(system, spreadsheet)
     header = []
     (6..12).each do |i|
-      p spreadsheet.row(i)
       header << spreadsheet.row(i)[1] unless spreadsheet.row(i).blank? && spreadsheet.row(i)[1].downcase.eql?("all")
     end
     header
